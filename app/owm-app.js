@@ -26,7 +26,13 @@ angular.module('OWMApp',['ngRoute'])
           })
           .when('/error',{
             template:'<p>Error - Page Not Found </p>'
-          });
+          })
+          .run(function($rootScope, $location) {
+              $rootScope.$on('$routeChangeError', function() {
+                console.log('error during route change');
+                $location.path('/errored');
+              });
+            })
       }])
 
       .controller('HomeCtrl',function($scope)
