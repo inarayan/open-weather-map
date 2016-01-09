@@ -1,4 +1,5 @@
 angular.module('OWMApp',['ngRoute'])
+        .value('owmCities', ['New York', 'Dallas', 'Chicago'])
         .config(['$routeProvider',function($routeProvider)
       {
         $routeProvider.when('/',{
@@ -8,7 +9,7 @@ angular.module('OWMApp',['ngRoute'])
           .when('/cities/:city',{
             templateUrl:'city.html',
             controller:'CityCtrl',
-            .resolve:{
+            resolve:{
               city:function(owmCities, $route, $location)
               {
                 var city=$route.current.params.city;
@@ -24,7 +25,7 @@ angular.module('OWMApp',['ngRoute'])
             }
           })
           .when('/error',{
-            template:'<p>Error - Page Not Found </p>''
+            template:'<p>Error - Page Not Found </p>'
           });
       }])
 
@@ -33,7 +34,7 @@ angular.module('OWMApp',['ngRoute'])
         //
       }
       )
-      .controller('CityCtrl',function($scope)
+      .controller('CityCtrl',function($scope,city)
     {
       //empty
       /*var city=$routeParams.city;
@@ -44,7 +45,7 @@ angular.module('OWMApp',['ngRoute'])
         console.log('')
         return;
       }*/
-      console.log(city);
+      console.log("Hey"+ city);
       $scope.city=city;
       //console.log('$scope city',$scope.city);
 
